@@ -4,13 +4,6 @@
 
 This project demonstrates the design and implementation of a **Fully Automated Serverless ETL & Analytics Pipeline** using AWS services. The goal of this project is to collect data from external APIs, process and clean it, store it in a structured format, and provide analytical insights via SQL queries and visualizations, all while maintaining observability and monitoring.
 
-The pipeline implements industry-standard cloud-native practices and ensures:
-- Data ingestion from external APIs using Databricks Workspace and Notebook (manual or scheduled via script).  
-- Data cleaning, transformation, and validation using AWS Glue Studio (ETL & Data Validation)  
-- Metadata management and cataloging for query optimization using Glue Crawler and Glue Data Catalog.  
-- Analytical queries using serverless query engines like Amazon Athena.  
-- Visualization and monitoring for business insights and reliability via Amazon QuickSight and CloudWatch.
-
 ---
 
 ## Chapter 1: Architecture
@@ -33,7 +26,7 @@ Data ingestion is the first critical stage of the pipeline. The goal is to fetch
 4. **Automation (Optional)**: The ingestion process can be scheduled using orchestration tools (e.g., EventBridge Scheduler) to ensure regular updates without manual intervention.  
 
 **Python Script (`DataIngestion.py`)**  
-[Access the DataIngestion.py file here](https://github.com/dhruvakashyap73/AWS-Dataflow/blob/main/2.%20Data_Ingestion/DataIngestion.py)
+[Access the "DataIngestion.py" file here](https://github.com/dhruvakashyap73/AWS-Dataflow/blob/main/2.%20Data_Ingestion/DataIngestion.py)
 
 ---
 
@@ -58,7 +51,7 @@ Finally, a **Glue Crawler** scans the processed S3 zone and updates the **AWS Gl
 After processing and cataloging the data using AWS Glue, **Amazon Athena** is used as a **serverless query engine** to analyze the cleaned datasets stored in S3. Athena enables ad-hoc queries, aggregations, and analytics on the processed OHLCV data.
 
 **Athena Queries File:**  
-[Access athena_queries.sql here](INSERT_LINK_TO_ATHENA_QUERIES_HERE)
+[To access "athena_queries.sql" file, Click Here](INSERT_LINK_TO_ATHENA_QUERIES_HERE)
 
 ### Key Insights from Athena Queries
 1. **Aggregated Metrics**  
@@ -81,62 +74,29 @@ After processing and cataloging the data using AWS Glue, **Amazon Athena** is us
 In this stage, the processed **OHLCV (Open, High, Low, Close, Volume)** data is visualized using **Amazon QuickSight**. The visualizations provide insights into market trends, daily price movements, trading activity, and price-volume correlations.
 
 ### Visualizations
-
 1. **Daily Price Change**  
-   - **File:** ![1.png](INSERT_IMAGE_LINK_HERE)  
+   - **File:** ![1.png](https://github.com/dhruvakashyap73/AWS-Dataflow/blob/main/5.%20Amazon%20Quicksight/1.png)  
    - **Insight:** This line chart shows daily price changes for the selected time period. It highlights **market volatility**, helping to identify days with significant gains or losses and assess overall price stability.
-
 2. **Daily Volume**  
-   - **File:** ![2.png](INSERT_IMAGE_LINK_HERE)  
+   - **File:** ![2.png](https://github.com/dhruvakashyap73/AWS-Dataflow/blob/main/5.%20Amazon%20Quicksight/2.png)  
    - **Insight:** This bar chart tracks **daily trading activity** by displaying the total trading volume per day. Peaks in the chart indicate high activity days, which can correlate with major market events.
-
 3. **Monthly Volume**  
-   - **File:** ![4.png](INSERT_IMAGE_LINK_HERE)  
+   - **File:** ![4.png](https://github.com/dhruvakashyap73/AWS-Dataflow/blob/main/5.%20Amazon%20Quicksight/4.png)  
    - **Insight:** This bar chart summarizes **long-term trading trends** by aggregating volume over the month. It helps to understand whether trading activity is increasing, decreasing, or stable over time.
-
 4. **Price vs Volume**  
-   - **File:** ![6.png](INSERT_IMAGE_LINK_HERE)  
+   - **File:** ![6.png](https://github.com/dhruvakashyap73/AWS-Dataflow/blob/main/5.%20Amazon%20Quicksight/6.png)  
    - **Insight:** This bubble/scatter chart analyzes the **correlation between price and trading volume**. The X-axis represents price, Y-axis represents trading volume, and bubble size indicates the relative market impact. It helps identify anomalies and relationships between price movements and trading activity.
-
-### Key Benefits
-
-- Provides interactive dashboards for easy data interpretation.  
-- Supports trend analysis, risk assessment, and market activity insights.  
-- Seamlessly integrated with Athena queries and Glue Data Catalog for real-time analytics.  
-- Enables stakeholders to make data-driven decisions without writing SQL or code.  
 
 ---
 
 ## Chapter 6: Amazon CloudWatch - Monitoring and Logs
 
-Monitoring is a critical part of any production-grade ETL pipeline. **Amazon CloudWatch** provides centralized monitoring, logging, and alerting for the entire serverless ETL and analytics workflow.
+Monitoring is a critical part of any production-grade ETL pipeline. **Amazon CloudWatch** provides centralized monitoring, logging, and alerting for the entire serverless ETL and analytics workflow. All AWS Glue ETL job runs, API ingestion events, and pipeline activities are logged, offering detailed information on execution status, errors, warnings, and performance metrics, which helps with quick troubleshooting and validation of ETL execution. Custom dashboards track key metrics such as ETL job duration, success/failure rates, data ingestion volume, API response times, and S3 storage growth in raw and processed zones. These dashboards provide real-time observability into pipeline health, ensure SLA compliance, and help optimize resource usage.  
 
-### Key Monitoring Components
+**CloudWatch Logs:**  
+![CloudWatch Logs 1](https://github.com/dhruvakashyap73/AWS-Dataflow/blob/main/6.%20AWS%20CloudWatch/CloudWatchLog(1).png) 
+![CloudWatch Logs 2](https://github.com/dhruvakashyap73/AWS-Dataflow/blob/main/6.%20AWS%20CloudWatch/CloudWatchLog(2).png) 
 
-1. **Logs**  
-   - All AWS Glue ETL job runs, API ingestion events, and pipeline activities are logged.  
-   - Logs provide detailed information on job execution status, errors, warnings, and performance metrics.  
-   - **Insight:** Enables quick troubleshooting, error tracking, and validation of ETL execution.  
 
-   **Example Log Dashboard:**  
-   ![CloudWatch Logs](INSERT_IMAGE_LINK_HERE)
-
-2. **Metrics & Dashboards**  
-   - Custom dashboards track key performance indicators such as:  
-     - ETL job duration and success/failure rate  
-     - Data ingestion volume  
-     - API response times  
-     - S3 storage growth in raw and processed zones  
-   - **Insight:** Provides real-time observability into pipeline health, ensures SLA compliance, and helps optimize resource usage.  
-
-   **Example Metrics Dashboard:**  
-   ![CloudWatch Metrics Dashboard](INSERT_IMAGE_LINK_HERE)
-
-### Benefits
-
-- Centralized monitoring across all AWS services used in the pipeline.  
-- Early detection of failures and anomalies through logs and metrics.  
-- Supports automation via alarms and notifications (optional SNS integration).  
-- Enhances reliability, observability, and operational efficiency of the data pipeline.
 
 
