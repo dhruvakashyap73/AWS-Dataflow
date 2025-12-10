@@ -49,11 +49,15 @@ Data ingestion is the first critical stage of the pipeline. The goal is to fetch
 **Implementation Details:**
 
 1. **Data Source**: Twelve Data API, which provides time-series and financial data.  
-2. **Data Retrieval**: Python script `DataIngestion.py` is used to fetch data from 12 different APIs.  
+2. **Data Retrieval**: Python script `DataIngestion.py` is used to fetch data from Twelve Data API.  
 3. **Storage**: Raw data is stored in **Amazon S3 Raw Zone**, organized by source and date for traceability.  
-4. **Automation**: Data ingestion can be scheduled to run at regular intervals using orchestration tools (optional enhancement: EventBridge Scheduler).  
+4. **Automation**: Data ingestion can be scheduled to run at regular intervals using orchestration tools (Optional enhancement: EventBridge Scheduler).  
 
-**Python Script Example (`DataIngestion.py`):**
+**Python Script (`DataIngestion.py`)**  
+[Access the DataIngestion.py file here](https://github.com/dhruvakashyap73/AWS-Dataflow/blob/main/2.%20Data_Ingestion/DataIngestion.py)
+
+**Raw Data Storage Diagram:**  
+![Raw Data Storage](INSERT_IMAGE_LINK_HERE)
 
 ## Chapter 3: AWS Glue Job - ETL Operations and Data Quality
 
