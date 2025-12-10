@@ -82,11 +82,11 @@ In this stage, the processed **OHLCV (Open, High, Low, Close, Volume)** data is 
    **Insight:** This bar chart tracks **daily trading activity** by displaying the total trading volume per day. Peaks in the chart indicate high activity days, which can correlate with major market events.
    
 5. **Monthly Volume**  
-   **File:** ![4.png](https://github.com/dhruvakashyap73/AWS-Dataflow/blob/main/5.%20Amazon%20Quicksight/4.png)  
+   ![4.png](https://github.com/dhruvakashyap73/AWS-Dataflow/blob/main/5.%20Amazon%20Quicksight/4.png)  
    **Insight:** This bar chart summarizes **long-term trading trends** by aggregating volume over the month. It helps to understand whether trading activity is increasing, decreasing, or stable over time.
    
 7. **Price vs Volume**  
-   **File:** ![6.png](https://github.com/dhruvakashyap73/AWS-Dataflow/blob/main/5.%20Amazon%20Quicksight/6.png)  
+   ![6.png](https://github.com/dhruvakashyap73/AWS-Dataflow/blob/main/5.%20Amazon%20Quicksight/6.png)  
    **Insight:** This bubble/scatter chart analyzes the **correlation between price and trading volume**. The X-axis represents price, Y-axis represents trading volume, and bubble size indicates the relative market impact. It helps identify anomalies and relationships between price movements and trading activity.
 
 ---
