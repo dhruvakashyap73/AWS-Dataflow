@@ -5,13 +5,6 @@ import json
 import time
 from datetime import datetime, timedelta
 
-
-# TWELVEDATA_API_KEY = '47692e932f0548f3b42da1968cf56226'  
-# aws_access_key_id = 'AKIAXMR7H7AWYAHUTSNC'
-# aws_secret_access_key = '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'
-# region_name = 'ap-south-1'
-# bucket_name = 'awsdataflowrawzone'
-
 TWELVEDATA_API_KEY = 'api_key_here'  
 aws_access_key_id = 's3_access_key'
 aws_secret_access_key = 's3_secret_key'
