@@ -1,3 +1,6 @@
+<p align="center">
+  <img src="https://github.com/dhruvakashyap73/AWS-Dataflow/blob/main/1.%20AWS%20DataFlow%20Architecture/Gemini_Generated_Image_6bvpes6bvpes6bvp.png" alt="Logo" width="250" height="250">
+</p>
 # AWS-Dataflow: Serverless ETL Pipeline 
 
 ## Introduction
