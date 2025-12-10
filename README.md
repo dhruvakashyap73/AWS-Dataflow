@@ -6,15 +6,11 @@ This project demonstrates the design and implementation of a **Fully Automated S
 
 The pipeline implements industry-standard cloud-native practices and ensures:
 
-- Automated data ingestion from external APIs.
-- Data cleaning, transformation, and validation.
-- Metadata management and cataloging for query optimization.
-- Analytical queries using serverless query engines.
-- Visualization and monitoring for business insights and reliability.
-
-The workflow is as follows:  
-
-**API → Raw Storage → ETL → Clean Data → Metadata Catalog → Query → Dashboard → Monitoring**  
+- Data ingestion from external APIs using Databricks Workspace and Notebook (manual or scheduled via script).  
+- Data cleaning, transformation, and validation using AWS Glue Studio (ETL & Data Validation)  
+- Metadata management and cataloging for query optimization using Glue Crawler and Glue Data Catalog.  
+- Analytical queries using serverless query engines like Amazon Athena.  
+- Visualization and monitoring for business insights and reliability via Amazon QuickSight and CloudWatch.
 
 ---
 
@@ -23,7 +19,7 @@ The workflow is as follows:
 ## Workflow
 This project demonstrates the design and implementation of a **Fully Automated Serverless ETL and Analytics Pipeline** on AWS. Data is first ingested from the **Twelve Data API** using a **Databricks Workspace and Notebook** along with a Python ingestion script (`DataIngestion.py`), ensuring traceability and scalable processing. The ingested data is stored in **Amazon S3 (Raw Zone)**. The raw data is then processed through **AWS Glue Studio**, where visual ETL jobs and scripts clean, transform, and validate the data, applying operations such as duplicate removal, null handling, aggregation, and type conversion. **AWS Glue Data Quality** jobs verify data accuracy and consistency, and a **Glue Crawler** updates the **Glue Data Catalog** with the processed schema and metadata, enabling serverless querying. **Amazon Athena** provides a SQL-based query engine for analyzing the cleaned data, producing insights on trading volumes, price changes, and risk metrics. These insights are visualized through **Amazon QuickSight**, which generates interactive dashboards for daily and monthly trends, price-volume correlations, and market volatility analysis. Finally, the entire pipeline is monitored using **Amazon CloudWatch**, capturing logs, metrics, and performance dashboards to ensure reliability, observability, and timely detection of anomalies. This end-to-end architecture demonstrates a production-grade, cloud-native approach to financial data analytics.
 
-**Architecture Diagram:**  
+**AWS Dataflow Architecture**  
 ![Architecture Diagram](https://github.com/dhruvakashyap73/AWS-Dataflow/blob/main/1.%20AWS%20DataFlow%20Architecture/AWS-Dataflow%20Architecture.jpeg)
 
 The architecture of this pipeline leverages **AWS Serverless Services** to achieve scalability, reliability, and cost-efficiency. The major components are:
@@ -49,7 +45,6 @@ Tracks **pipeline performance, job logs, metrics, and alerts** to ensure reliabi
 Data ingestion is the first critical stage of the pipeline. The goal is to fetch raw data from **Twelve Data API** and store it in Amazon S3 (Raw Zone) for further processing. The ingestion process is implemented using **Databricks Workspace and Notebook**, which allows scalable, interactive data processing before storing it in S3.
 
 **Implementation Details:**
-
 1. **Data Source**: Twelve Data API, providing financial and time-series data (OHLCV).  
 2. **Data Retrieval**: Data is ingested via a **Databricks Notebook**, which runs a Python script (`DataIngestion.py`) to fetch data from the Twelve Data API. Databricks provides an interactive environment to process, validate, and prepare the data before storage.  
 3. **Storage**: Raw data is stored in **Amazon S3 Raw Zone**, organized by source and date for traceability and easy access for downstream ETL processes.  
@@ -62,66 +57,40 @@ Data ingestion is the first critical stage of the pipeline. The goal is to fetch
 
 ## Chapter 3: AWS Glue Job - ETL Operations and Data Quality
 
-After ingesting raw data into S3, the next stage is **ETL processing** using **AWS Glue Studio**. This stage transforms raw data into clean, structured data suitable for analysis.
+After ingesting raw data into S3, the next stage is **ETL processing** using **AWS Glue Studio**. The ETL job, implemented as `awsdataflowjob.py`, performs multiple transformations on the raw data, including duplicate removal, null handling, aggregations, data type conversions, and joining multiple datasets to produce clean, structured data ready for analysis.  
 
-**Components:**
+**Visual ETL Flow Map:**  
+![Visual ETL Flow Map](https://github.com/dhruvakashyap73/AWS-Dataflow/blob/main/3.%20AWS%20Glue%20ETL/AWS%20Glue%20ETL.png)
 
-1. **Visual ETL in AWS Glue Studio**  
-   - The ETL job `awsdataflowjob.py` performs transformations including:  
-     - Removing duplicates  
-     - Handling null values    
-     - Aggregations 
-     - Data type conversions 
-     - Joining multiple datasets  
+Once the data is processed, **AWS Glue Data Quality** jobs validate it against business rules to ensure completeness, correctness, and consistency across related datasets. This includes checks for mandatory fields, correct data types, and reasonable value ranges.  
 
-   **Visual ETL Flow Map:**  
-   ![Visual ETL Flow Map](https://github.com/dhruvakashyap73/AWS-Dataflow/blob/main/3.%20AWS%20Glue%20ETL/AWS%20Glue%20ETL.png)
+**Data Quality Report:**  
+![Data Quality Report](https://github.com/dhruvakashyap73/AWS-Dataflow/blob/main/3.%20AWS%20Glue%20ETL/AWS%20Glue%20ETL%20DataQuality.png)
 
-2. **Data Quality Validation**  
-   - AWS Glue Data Quality jobs validate data against business rules, ensuring:  
-     - No missing mandatory fields  
-     - Correct data types  
-     - Reasonable value ranges  
-     - Consistency across related datasets  
-
-   **Data Quality Report:**  
-   ![Data Quality Report](https://github.com/dhruvakashyap73/AWS-Dataflow/blob/main/3.%20AWS%20Glue%20ETL/AWS%20Glue%20ETL%20DataQuality.png)
-
-3. **Schema Management**  
-   - After ETL, a **Glue Crawler** crawls the processed S3 zone.  
-   - It updates the **AWS Glue Data Catalog** with schema and metadata for each dataset.  
-   - This enables Athena and other AWS services to query the processed data efficiently.  
+Finally, a **Glue Crawler** scans the processed S3 zone and updates the **AWS Glue Data Catalog** with schema and metadata for each dataset. This enables efficient querying of the processed data using Amazon Athena or other AWS services, completing the ETL and validation cycle.
 
 ---
 
 ## Chapter 4: Amazon Athena - Queries and Insights
 
-After processing and cataloging the data using AWS Glue, **Amazon Athena** is used as a **serverless query engine** to analyze the cleaned data stored in S3. Athena enables ad-hoc queries and aggregations to extract meaningful insights from the processed OHLCV datasets.
+After processing and cataloging the data using AWS Glue, **Amazon Athena** is used as a **serverless query engine** to analyze the cleaned datasets stored in S3. Athena enables ad-hoc queries, aggregations, and analytics on the processed OHLCV data.
+
+**Athena Queries File:**  
+[Access athena_queries.sql here](INSERT_LINK_TO_ATHENA_QUERIES_HERE)
 
 ### Key Insights from Athena Queries
-
 1. **Aggregated Metrics**  
-   - Daily and monthly aggregates of trading volume and prices were computed.  
-   - **Insight:** Revealed trends in market activity, such as days with unusually high or low trading volume and periods of significant price changes.
-
+   Daily and monthly aggregates of trading volume and prices were computed.  
+   **Insight:** Revealed trends in market activity, highlighting days with unusually high or low trading volumes and significant price changes.
 2. **Time-Series Analysis**  
-   - Daily changes in closing price and volume were tracked.  
-   - **Insight:** Highlighted market volatility, showing peaks and drops on specific dates, which are critical for understanding trading behavior and risk assessment.
-
+   Daily changes in closing price and trading volume were tracked.  
+   **Insight:** Showed market volatility with peaks and drops on specific dates, essential for understanding trading behavior and risk.
 3. **Comparative Analysis**  
-   - Sector-wise and category-wise aggregations were analyzed.  
-   - **Insight:** Identified top-performing sectors or stocks and their contribution to overall market capitalization or trading activity. This helps in portfolio analysis and investment strategy planning.
-
+   Sector-wise and category-wise aggregations were analyzed.  
+   **Insight:** Identified top-performing stocks or sectors and their contribution to overall market activity, aiding investment and portfolio analysis.
 4. **Risk and Performance Metrics**  
-   - Daily rate of change and percentage returns were calculated.  
-   - **Insight:** Pinpointed high-risk days with major price drops or spikes. This provides a better understanding of market stability and informs risk management strategies.
-
-### Benefits of Using Athena
-
-- **Serverless and Scalable:** No infrastructure setup required, scales automatically with data volume.  
-- **Integration with Glue Data Catalog:** Allows immediate querying of processed data.  
-- **Supports QuickSight Visualizations:** Provides the basis for dashboards and analytical insights.  
-- **Real-Time Analysis:** Enables timely decisions based on updated processed datasets.  
+   Daily rate of change and percentage returns were calculated.  
+   **Insight:** Pinpointed high-risk days with major price spikes or drops, providing insights into market stability and informing risk management strategies 
 
 ---
 
