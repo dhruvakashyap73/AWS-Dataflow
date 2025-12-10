@@ -25,8 +25,7 @@ Data ingestion is the first critical stage of the pipeline. The goal is to fetch
 3. **Storage**: Raw data is stored in **Amazon S3 Raw Zone**, organized by source and date for traceability and easy access for downstream ETL processes.  
 4. **Automation (Optional)**: The ingestion process can be scheduled using orchestration tools (e.g., EventBridge Scheduler) to ensure regular updates without manual intervention.  
 
-**Python Script (`DataIngestion.py`)**  
-[Access the "DataIngestion.py" file here](https://github.com/dhruvakashyap73/AWS-Dataflow/blob/main/2.%20Data_Ingestion/DataIngestion.py)
+**Python Script (`DataIngestion.py`)** : [Access the "DataIngestion.py" file here](https://github.com/dhruvakashyap73/AWS-Dataflow/blob/main/2.%20Data_Ingestion/DataIngestion.py)
 
 ---
 
@@ -50,8 +49,7 @@ Finally, a **Glue Crawler** scans the processed S3 zone and updates the **AWS Gl
 
 After processing and cataloging the data using AWS Glue, **Amazon Athena** is used as a **serverless query engine** to analyze the cleaned datasets stored in S3. Athena enables ad-hoc queries, aggregations, and analytics on the processed OHLCV data.
 
-**Athena Queries File:**  
-[To access "athena_queries.sql" file, Click Here](INSERT_LINK_TO_ATHENA_QUERIES_HERE)
+**Athena Queries File:** : [Access "athena_queries.sql" file Here](INSERT_LINK_TO_ATHENA_QUERIES_HERE)
 
 ### Key Insights from Athena Queries
 1. **Aggregated Metrics**  
