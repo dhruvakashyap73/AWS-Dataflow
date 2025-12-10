@@ -1,6 +1,5 @@
 <p align="center">
   <img src="https://github.com/dhruvakashyap73/AWS-Dataflow/blob/main/1.%20AWS%20DataFlow%20Architecture/ChatGPT%20Image%20Dec%2010%2C%202025%2C%2003_29_24%20PM.png" alt="Logo" width="250" height="250">
-  <img src="https://github.com/dhruvakashyap73/AWS-Dataflow/blob/main/1.%20AWS%20DataFlow%20Architecture/ChatGPT%20Image%20Dec%2010%2C%202025%2C%2003_32_44%20PM.png" alt="Logo" width="250" height="250">
 </p>
 # AWS-Dataflow: Serverless ETL Pipeline 
 
