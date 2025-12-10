@@ -31,7 +31,7 @@ The architecture of this pipeline leverages **AWS Serverless Services** to achie
 7. **Monitoring**: Amazon CloudWatch tracks pipeline performance, logs, and metrics.  
 
 **Architecture Diagram:**  
-![Architecture Diagram](INSERT_IMAGE_LINK_HERE)
+![Architecture Diagram](https://github.com/dhruvakashyap73/AWS-Dataflow/blob/main/1.%20AWS%20DataFlow%20Architecture/AWS-Dataflow%20Architecture.jpeg)
 
 **Key Advantages:**
 
@@ -64,13 +64,13 @@ After ingesting raw data into S3, the next stage is **ETL processing** using **A
 1. **Visual ETL in AWS Glue Studio**  
    - The ETL job `awsdataflowjob.py` performs transformations including:  
      - Removing duplicates  
-     - Handling null values  
-     - Data type conversions  
-     - Aggregations  
+     - Handling null values    
+     - Aggregations 
+     - Data type conversions 
      - Joining multiple datasets  
 
    **Visual ETL Flow Map:**  
-   ![Visual ETL Flow Map](INSERT_IMAGE_LINK_HERE)
+   ![Visual ETL Flow Map](https://github.com/dhruvakashyap73/AWS-Dataflow/blob/main/3.%20AWS%20Glue%20ETL/AWS%20Glue%20ETL.png)
 
 2. **Data Quality Validation**  
    - AWS Glue Data Quality jobs validate data against business rules, ensuring:  
@@ -79,8 +79,8 @@ After ingesting raw data into S3, the next stage is **ETL processing** using **A
      - Reasonable value ranges  
      - Consistency across related datasets  
 
-   **Data Quality Report/Image:**  
-   ![Data Quality Image](INSERT_IMAGE_LINK_HERE)
+   **Data Quality Report:**  
+   ![Data Quality Report](https://github.com/dhruvakashyap73/AWS-Dataflow/blob/main/3.%20AWS%20Glue%20ETL/AWS%20Glue%20ETL%20DataQuality.png)
 
 3. **Schema Management**  
    - After ETL, a **Glue Crawler** crawls the processed S3 zone.  
