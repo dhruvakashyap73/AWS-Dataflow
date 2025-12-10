@@ -72,7 +72,6 @@ After processing and cataloging the data using AWS Glue, **Amazon Athena** is us
 In this stage, the processed **OHLCV (Open, High, Low, Close, Volume)** data is visualized using **Amazon QuickSight**. The visualizations provide insights into market trends, daily price movements, trading activity, and price-volume correlations.
 
 ### Visualizations
-
 1. **Daily Price Change**  
    ![1.png](https://github.com/dhruvakashyap73/AWS-Dataflow/blob/main/5.%20Amazon%20Quicksight/1.png)  
    **Insight:** This line chart shows daily price changes for the selected time period. It highlights **market volatility**, helping to identify days with significant gains or losses and assess overall price stability.
