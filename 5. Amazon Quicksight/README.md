@@ -1,4 +1,4 @@
-# 📈 Stage 4: Visualization (QuickSight)
+Visualization (QuickSight)
 Visualize processed OHLCV data using **Amazon QuickSight**.
 
 | Chart | File | Insight |
