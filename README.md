@@ -20,22 +20,6 @@ This project implements a **Serverless ETL and Analytics Pipeline** on AWS. Data
 **AWS Dataflow Architecture**  
 ![Architecture Diagram](https://github.com/dhruvakashyap73/AWS-Dataflow/blob/main/1.%20AWS%20DataFlow%20Architecture/AWS-Dataflow%20Architecture.jpeg)
 
-The architecture of this pipeline leverages **AWS Serverless Services** to achieve scalability, reliability, and cost-efficiency. The major components are:
-### 1. Twelve Data API (Data Source)  
-Serves as the **external data source**, providing financial and stock market data (OHLCV) that feeds the pipeline. Data is ingested using **Databricks Workspace and Notebook** for scalable, interactive processing.
-### 2. Amazon S3 (Data Ingestion)  
-Ingested data from the Twelve Data API is stored in **Amazon S3 (Raw Zone)**, providing centralized and durable storage for raw data.
-### 3. AWS Glue Studio (ETL Processing & Data Validation)  
-Performs **Extract, Transform, Load (ETL)** operations on raw data, cleaning, structuring, and preparing it for analysis. Validates the processed data for **accuracy, completeness, and consistency**, ensuring high-quality datasets for downstream analytics.
-### 4. AWS Glue Crawler & Glue Data Catalog (Schema Management)  
-Automatically crawls processed data to detect schema and metadata, storing it in the **Glue Data Catalog** for easy access and querying.
-### 5. Amazon Athena (Query Engine)  
-Enables **SQL-based analysis** on the cleaned and cataloged datasets without provisioning servers.
-### 6. Amazon QuickSight (Visualization)  
-Provides **interactive dashboards** for visualizing insights such as price trends, trading volume, and correlations.
-### 7. Amazon CloudWatch (Monitoring)  
-Tracks **pipeline performance, job logs, metrics, and alerts** to ensure reliability, observability, and quick troubleshooting.
-
 ---
 
 ## Chapter 2: Data Ingestion
