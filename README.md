@@ -72,18 +72,22 @@ After processing and cataloging the data using AWS Glue, **Amazon Athena** is us
 In this stage, the processed **OHLCV (Open, High, Low, Close, Volume)** data is visualized using **Amazon QuickSight**. The visualizations provide insights into market trends, daily price movements, trading activity, and price-volume correlations.
 
 ### Visualizations
+
 1. **Daily Price Change**  
    ![1.png](https://github.com/dhruvakashyap73/AWS-Dataflow/blob/main/5.%20Amazon%20Quicksight/1.png)  
    **Insight:** This line chart shows daily price changes for the selected time period. It highlights **market volatility**, helping to identify days with significant gains or losses and assess overall price stability.
-2. **Daily Volume**  
+   
+3. **Daily Volume**  
    ![2.png](https://github.com/dhruvakashyap73/AWS-Dataflow/blob/main/5.%20Amazon%20Quicksight/2.png)  
    **Insight:** This bar chart tracks **daily trading activity** by displaying the total trading volume per day. Peaks in the chart indicate high activity days, which can correlate with major market events.
-3. **Monthly Volume**  
-   - **File:** ![4.png](https://github.com/dhruvakashyap73/AWS-Dataflow/blob/main/5.%20Amazon%20Quicksight/4.png)  
-   - **Insight:** This bar chart summarizes **long-term trading trends** by aggregating volume over the month. It helps to understand whether trading activity is increasing, decreasing, or stable over time.
-4. **Price vs Volume**  
-   - **File:** ![6.png](https://github.com/dhruvakashyap73/AWS-Dataflow/blob/main/5.%20Amazon%20Quicksight/6.png)  
-   - **Insight:** This bubble/scatter chart analyzes the **correlation between price and trading volume**. The X-axis represents price, Y-axis represents trading volume, and bubble size indicates the relative market impact. It helps identify anomalies and relationships between price movements and trading activity.
+   
+5. **Monthly Volume**  
+   **File:** ![4.png](https://github.com/dhruvakashyap73/AWS-Dataflow/blob/main/5.%20Amazon%20Quicksight/4.png)  
+   **Insight:** This bar chart summarizes **long-term trading trends** by aggregating volume over the month. It helps to understand whether trading activity is increasing, decreasing, or stable over time.
+   
+7. **Price vs Volume**  
+   **File:** ![6.png](https://github.com/dhruvakashyap73/AWS-Dataflow/blob/main/5.%20Amazon%20Quicksight/6.png)  
+   **Insight:** This bubble/scatter chart analyzes the **correlation between price and trading volume**. The X-axis represents price, Y-axis represents trading volume, and bubble size indicates the relative market impact. It helps identify anomalies and relationships between price movements and trading activity.
 
 ---
 
