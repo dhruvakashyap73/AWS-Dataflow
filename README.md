@@ -20,44 +20,45 @@ The workflow is as follows:
 
 ## Chapter 1: Architecture
 
-The architecture of this pipeline leverages **AWS Serverless Services** to achieve scalability, reliability, and cost-efficiency. The major components are:
-
-1. **Data Ingestion**: Data is collected from external APIs and stored in Amazon S3 (Raw Zone).  
-2. **ETL Processing**: AWS Glue Studio performs Extract, Transform, Load (ETL) operations, cleaning and structuring the data.  
-3. **Data Validation**: AWS Glue Data Quality jobs verify data accuracy, completeness, and consistency.  
-4. **Schema Management**: Glue Crawler updates the AWS Glue Data Catalog with processed schema and metadata.  
-5. **Query Engine**: Amazon Athena allows running SQL queries on the cleaned and cataloged data.  
-6. **Visualization**: Amazon QuickSight dashboards visualize key insights for stakeholders.  
-7. **Monitoring**: Amazon CloudWatch tracks pipeline performance, logs, and metrics.  
+## Workflow
+This project demonstrates the design and implementation of a **Fully Automated Serverless ETL and Analytics Pipeline** on AWS. Data is first ingested from the **Twelve Data API** using a **Databricks Workspace and Notebook** along with a Python ingestion script (`DataIngestion.py`), ensuring traceability and scalable processing. The ingested data is stored in **Amazon S3 (Raw Zone)**. The raw data is then processed through **AWS Glue Studio**, where visual ETL jobs and scripts clean, transform, and validate the data, applying operations such as duplicate removal, null handling, aggregation, and type conversion. **AWS Glue Data Quality** jobs verify data accuracy and consistency, and a **Glue Crawler** updates the **Glue Data Catalog** with the processed schema and metadata, enabling serverless querying. **Amazon Athena** provides a SQL-based query engine for analyzing the cleaned data, producing insights on trading volumes, price changes, and risk metrics. These insights are visualized through **Amazon QuickSight**, which generates interactive dashboards for daily and monthly trends, price-volume correlations, and market volatility analysis. Finally, the entire pipeline is monitored using **Amazon CloudWatch**, capturing logs, metrics, and performance dashboards to ensure reliability, observability, and timely detection of anomalies. This end-to-end architecture demonstrates a production-grade, cloud-native approach to financial data analytics.
 
 **Architecture Diagram:**  
 ![Architecture Diagram](https://github.com/dhruvakashyap73/AWS-Dataflow/blob/main/1.%20AWS%20DataFlow%20Architecture/AWS-Dataflow%20Architecture.jpeg)
 
-**Key Advantages:**
-
-- Fully serverless, eliminating the need for provisioning servers.
-- Scalable to handle large datasets.
-- Observability and logging via CloudWatch.
-- Real-world production-level design.
+The architecture of this pipeline leverages **AWS Serverless Services** to achieve scalability, reliability, and cost-efficiency. The major components are:
+### 1. Twelve Data API (Data Source)  
+Serves as the **external data source**, providing financial and stock market data (OHLCV) that feeds the pipeline. Data is ingested using **Databricks Workspace and Notebook** for scalable, interactive processing.
+### 2. Amazon S3 (Data Ingestion)  
+Ingested data from the Twelve Data API is stored in **Amazon S3 (Raw Zone)**, providing centralized and durable storage for raw data.
+### 3. AWS Glue Studio (ETL Processing & Data Validation)  
+Performs **Extract, Transform, Load (ETL)** operations on raw data, cleaning, structuring, and preparing it for analysis. Validates the processed data for **accuracy, completeness, and consistency**, ensuring high-quality datasets for downstream analytics.
+### 4. AWS Glue Crawler & Glue Data Catalog (Schema Management)  
+Automatically crawls processed data to detect schema and metadata, storing it in the **Glue Data Catalog** for easy access and querying.
+### 5. Amazon Athena (Query Engine)  
+Enables **SQL-based analysis** on the cleaned and cataloged datasets without provisioning servers.
+### 6. Amazon QuickSight (Visualization)  
+Provides **interactive dashboards** for visualizing insights such as price trends, trading volume, and correlations.
+### 7. Amazon CloudWatch (Monitoring)  
+Tracks **pipeline performance, job logs, metrics, and alerts** to ensure reliability, observability, and quick troubleshooting.
 
 ---
 
 ## Chapter 2: Data Ingestion
 
-Data ingestion is the first critical stage of the pipeline. The goal is to fetch raw data from **Twelve Data API** and store it in Amazon S3 (Raw Zone) for further processing.
+Data ingestion is the first critical stage of the pipeline. The goal is to fetch raw data from **Twelve Data API** and store it in Amazon S3 (Raw Zone) for further processing. The ingestion process is implemented using **Databricks Workspace and Notebook**, which allows scalable, interactive data processing before storing it in S3.
 
 **Implementation Details:**
 
-1. **Data Source**: Twelve Data API, which provides time-series and financial data.  
-2. **Data Retrieval**: Python script `DataIngestion.py` is used to fetch data from Twelve Data API.  
-3. **Storage**: Raw data is stored in **Amazon S3 Raw Zone**, organized by source and date for traceability.  
-4. **Automation**: Data ingestion can be scheduled to run at regular intervals using orchestration tools (Optional enhancement: EventBridge Scheduler).  
+1. **Data Source**: Twelve Data API, providing financial and time-series data (OHLCV).  
+2. **Data Retrieval**: Data is ingested via a **Databricks Notebook**, which runs a Python script (`DataIngestion.py`) to fetch data from the Twelve Data API. Databricks provides an interactive environment to process, validate, and prepare the data before storage.  
+3. **Storage**: Raw data is stored in **Amazon S3 Raw Zone**, organized by source and date for traceability and easy access for downstream ETL processes.  
+4. **Automation (Optional)**: The ingestion process can be scheduled using orchestration tools (e.g., EventBridge Scheduler) to ensure regular updates without manual intervention.  
 
 **Python Script (`DataIngestion.py`)**  
 [Access the DataIngestion.py file here](https://github.com/dhruvakashyap73/AWS-Dataflow/blob/main/2.%20Data_Ingestion/DataIngestion.py)
 
-**Raw Data Storage Diagram:**  
-![Raw Data Storage](INSERT_IMAGE_LINK_HERE)
+---
 
 ## Chapter 3: AWS Glue Job - ETL Operations and Data Quality
 
@@ -90,12 +91,6 @@ After ingesting raw data into S3, the next stage is **ETL processing** using **A
    - After ETL, a **Glue Crawler** crawls the processed S3 zone.  
    - It updates the **AWS Glue Data Catalog** with schema and metadata for each dataset.  
    - This enables Athena and other AWS services to query the processed data efficiently.  
-
-**Benefits:**
-
-- Centralized and clean data storage in S3 (Processed Zone).  
-- Production-grade data validation ensures high-quality analytics.  
-- Metadata cataloging allows serverless SQL queries without manual schema management.  
 
 ---
 
