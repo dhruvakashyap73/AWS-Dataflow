@@ -13,7 +13,7 @@ This project demonstrates the design and implementation of a **Fully Automated S
 This project implements a **Serverless ETL and Analytics Pipeline** on AWS. Data is collected from the **Twelve Data API** using a Python script (`DataIngestion.py`) written in **Databricks Notebook** and stored in **Amazon S3 (Raw Zone)**. The raw data is then processed in **AWS Glue Studio**, where it is cleaned, transformed, and structured by removing duplicates, handling missing values, aggregating, and converting data types. **AWS Glue Data Quality** jobs check the data for accuracy and consistency. Then the transformed data is stored in **Amazon S3 (Processed Zone)**. A **Glue Crawler** updates the **Glue Data Catalog** with schema and metadata, making the data ready for queries. **Amazon Athena** runs SQL queries on the processed data to extract insights such as trading volumes, price changes, and risk metrics. These insights are visualized in **Amazon QuickSight** dashboards, showing trends, correlations, and market volatility. Finally, **Amazon CloudWatch** monitors the pipeline, collecting logs and metrics to ensure reliability and detect issues. This pipeline shows a complete, cloud-native approach for analyzing financial data.
 
 **AWS Dataflow Architecture**  
-![Architecture Diagram](https://github.com/dhruvakashyap73/AWS-Dataflow/blob/main/1.%20AWS%20DataFlow%20Architecture/AWS-Dataflow%20Architecture.jpeg)
+![Architecture Diagram](https://github.com/dhruvakashyap73/AWS-Dataflow/blob/main/1.%20AWS%20DataFlow%20Architecture/AWS-Dataflow%20Architecture.png)
 
 ---
 
